@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../FirstLend.Domain/FirstLend.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
