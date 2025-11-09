@@ -75,13 +75,9 @@ namespace FraudGuard.Infrastructure.Data
                                 {
                                     await userManager.AddToRoleAsync(applicationUser, "admin");
                                 }
-                                else if (index == 1)
+                                else 
                                 {
-                                    await userManager.AddToRoleAsync(applicationUser, "analyst");
-                                }
-                                else
-                                {
-                                    await userManager.AddToRoleAsync(applicationUser, "viewer");
+                                    await userManager.AddToRoleAsync(applicationUser, "borrower");
                                 }
                             }
                             else
