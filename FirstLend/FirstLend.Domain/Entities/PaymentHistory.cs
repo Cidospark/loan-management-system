@@ -13,11 +13,12 @@ namespace FirstLend.Domain.Entities
         public Guid LoanId { get; set; }
         public Guid TransactionId { get; set; }
         public Guid UserId { get; set; }
-        public decimal Amount { get; set; }
+        public decimal AmountDue { get; set; }
         public decimal Principal { get; set; }
         public decimal Interest { get; set; }
         public string Method { get; set; } = "";
         public string Status { get; set; } = "";
+        public string DueAt { get; set; } = "";
         public string CreatedAt { get; set; } = "";
 
 

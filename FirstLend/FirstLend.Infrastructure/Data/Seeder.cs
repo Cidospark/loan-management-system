@@ -37,11 +37,21 @@ namespace FraudGuard.Infrastructure.Data
                         }
                     }
                 }
-                
+
+                if (!context.LoanTypes.Any())
+                {
+                    var loanTypesData = await File.ReadAllTextAsync("../FirstLend.Infrastructure/Data/SeedData/loanTypes.json");
+                    var loanTypes = JsonConvert.DeserializeObject<List<LoanType>>(loanTypesData);
+                    if (loanTypes != null && loanTypes.Any())
+                    {
+                        await context.AddRangeAsync(loanTypes);
+                    }
+                    await context.SaveChangesAsync();
+                }
 
                 if (!userManager.Users.Any())
                 {
-                    var userData = await File.ReadAllTextAsync("../FraudGuard.Infrastructure/Data/SeedData/users.json");
+                    var userData = await File.ReadAllTextAsync("../FirstLend.Infrastructure/Data/SeedData/users.json");
                     var users = JsonConvert.DeserializeObject<List<User>>(userData);
                     using var beginTransaction = await context.Database.BeginTransactionAsync();
                     try
@@ -89,8 +99,22 @@ namespace FraudGuard.Infrastructure.Data
                     }
                 }
 
-                
-            }catch(Exception e)
+
+                if (!context.Loans.Any())
+                {
+                    var loansData = await File.ReadAllTextAsync("../FirstLend.Infrastructure/Data/SeedData/loans.json");
+                    var loans = JsonConvert.DeserializeObject<List<Loan>>(loansData);
+                    if (loans != null && loans.Any())
+                    {
+                        await context.AddRangeAsync(loans);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
+
+
+            }
+            catch (Exception e)
             {
                 Console.WriteLine($"Error seeding data - {e.Message}");
                 throw;

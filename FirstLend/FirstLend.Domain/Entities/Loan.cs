@@ -26,5 +26,7 @@ namespace FirstLend.Domain.Entities
 
         public User? Borrower { get; set; }
         public LoanType? LoanType { get; set; }
+
+        public ICollection<PaymentHistory> PaymentHistories { get; set; } = [];
     }
 }
